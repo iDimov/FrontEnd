@@ -1,0 +1,54 @@
+.intro-bg {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('/images/slogan.png');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+  transform: scale(1);
+  z-index: -1;
+  opacity: 0;
+}
+
+.white-line {
+   height: 0vh;
+   background-color: rgba(255, 255, 255, 0.5);
+   width: 29vw;
+   position: absolute;
+   z-index: 1;
+   left: 23%;
+   opacity: 0.5
+}
+.intro {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+}
+.intro__intro-text {
+  overflow: hidden;
+  line-height: 0.9;
+  height: 12em;
+}
+.intro__h1-title {
+  text-align: center;
+  font-size: 12em;
+  color: black;
+  font-family: $roboto;
+  line-height: 1;
+  bottom: -180px;
+  position: relative;
+  margin: 0;
+  z-index: 1;
+}
+.intro__intro-info {
+  position: absolute;
+  color: black;
+  font-family: $mono;
+  top: 13%;
+  padding-left: 57px;
+  opacity: 0;
+}

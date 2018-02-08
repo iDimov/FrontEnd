@@ -1,0 +1,43 @@
+{
+  "name": "start-template",
+  "version": "1.0.0",
+  "author": "idimov.com",
+  "description": "Start template for simple web projects using HTML5, SASS, Bourbon, Neat, and Gulp.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iDimov/start-template.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iDimov/start-template.git/issues"
+  },
+  "dependencies": {
+    "bourbon": "^4.2.6",
+    "bourbon-neat": "1.8.0",
+    "browser-sync": "^2.11.1",
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-clean-css": "^2.0.5",
+    "gulp-concat": "^2.6.0",
+    "gulp-file-include": "^0.14.0",
+    "gulp-htmlmin": "^2.0.0",
+    "gulp-imagemin": "^3.0.3",
+    "gulp-jshint": "^2.0.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-sass": "^2.2.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^2.0.0",
+    "gulp-usemin": "^0.3.21",
+    "jquery": "^3.1.0",
+    "jshint": "^2.9.1",
+    "jshint-stylish": "^2.1.0",
+    "normalize.css": "^4.0.0",
+    "reset-css": "^2.2.1",
+    "run-sequence": "^1.1.5"
+  },
+  "scripts": {
+    "dev": "gulp dev",
+    "prod": "gulp prod"
+  }
+}
