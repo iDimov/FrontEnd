@@ -162,7 +162,7 @@ gulp.task('prod:fonts', function() {
 
 //create a prod task that runs devbuild then runs the other prod tasks above
 gulp.task('prod', function(cb) {
-    runSequence('prod:clean', 'dev:build', ['vendor', 'prod:useMin', 'prod:html', 'prod:images', 'prod:fonts'], cb);
+    runSequence('prod:clean', 'dev:build', ['vendor', 'prod:html', 'prod:images'], cb);
 });
 
 //Fire up a prod server to make sure nothing is broken in the prod code
