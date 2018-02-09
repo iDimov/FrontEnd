@@ -1,40 +1,39 @@
 //** NPM Dependencies **//
-var gulp        = require('gulp'),
-    del         = require('del'),
-    include     = require('gulp-file-include'),
-    sass        = require('gulp-sass'),
-    autoprefix  = require('gulp-autoprefixer'),
-    minifyCSS   = require('gulp-clean-css'),
-    stylish     = require('jshint-stylish'),
-    jshint      = require('gulp-jshint'),
-    uglify      = require('gulp-uglify'),
-    concat      = require('gulp-concat'),
-    sourcemaps  = require('gulp-sourcemaps'),
-    usemin      =  require('gulp-usemin'),
-    imagemin    = require('gulp-imagemin'),
+var gulp = require('gulp'),
+    del = require('del'),
+    include = require('gulp-file-include'),
+    sass = require('gulp-sass'),
+    autoprefix = require('gulp-autoprefixer'),
+    minifyCSS = require('gulp-clean-css'),
+    stylish = require('jshint-stylish'),
+    jshint = require('gulp-jshint'),
+    uglify = require('gulp-uglify'),
+    concat = require('gulp-concat'),
+    sourcemaps = require('gulp-sourcemaps'),
+    usemin = require('gulp-usemin'),
+    imagemin = require('gulp-imagemin'),
     htmlmin = require('gulp-htmlmin'),
     runSequence = require('run-sequence'),
-    plumber     = require('gulp-plumber'),
+    plumber = require('gulp-plumber'),
     browserSync = require('browser-sync'),
-    reload      = browserSync.reload;
-   //yargs       = require('yargs').argv;
+    reload = browserSync.reload;
+//yargs       = require('yargs').argv;
 
 //** Path Variables **//
-var rootPath    = 'app/',
+var rootPath = 'app/',
     tmpPath = '.tmp/',
     distPath = 'public/',
     htmlSource = 'app/html/*.html',
     htmlIncludesSource = 'app/html/**/*.html',
     stylesSource = 'app/styles/**/*.scss',
     scriptsSource = 'app/scripts/**/*.js',
-    scriptsVendorSource = 'app/scripts/vendor/**/*.js',
     imagesSource = 'app/images/**/*',
     tmpImagesSource = '.tmp/images/**/*',
     fontsSource = 'app/fonts/**/*';
 
 //** Dev Task **//
 //Compile HTML includes and copy to tmp folder
-gulp.task('html', function() {
+gulp.task('html', function () {
     return gulp.src(htmlSource)
         .pipe(plumber())
         .pipe(include({
@@ -59,15 +58,9 @@ gulp.task('styles', function () {
 });
 
 //Copy jQuery from node_modules to dev
-gulp.task('copyJquery', function() {
+gulp.task('copyJquery', function () {
     return gulp.src('node_modules/jquery/dist/jquery.min.js')
         .pipe(gulp.dest(tmpPath + '/scripts/vendor'));
-});
-
-// vendor to prod
-gulp.task('vendor', function() {
-    return gulp.src(scriptsVendorSource)
-        .pipe(gulp.dest(distPath + '/scripts/vendor'));
 });
 
 //Lint scripts
@@ -80,7 +73,7 @@ gulp.task('jshint', function () {
 });
 
 //Copy images
-gulp.task('copyImages', function() {
+gulp.task('copyImages', function () {
     return gulp.src(imagesSource)
         .pipe(gulp.dest(tmpPath + 'images'));
 });
@@ -88,7 +81,7 @@ gulp.task('copyImages', function() {
 //Optimize Images
 //this is a separate task because we don't want to optimize
 //our svg files automatically
-gulp.task('optimizeImages', function() {
+gulp.task('optimizeImages', function () {
     return gulp.src(tmpImagesSource + '*.{gif,jpg,png}')
         .pipe(imagemin())
         .pipe(gulp.dest(tmpPath + 'images'))
@@ -96,12 +89,12 @@ gulp.task('optimizeImages', function() {
 });
 
 //Copy images to tmp folder then, optimize
-gulp.task('images', function(cb) {
+gulp.task('images', function (cb) {
     runSequence('copyImages', 'optimizeImages', cb);
 });
 
 //Fire up a dev server
-gulp.task('dev:serve', function() {
+gulp.task('dev:serve', function () {
     browserSync({
         server: {
             baseDir: [rootPath, tmpPath]
@@ -110,7 +103,7 @@ gulp.task('dev:serve', function() {
 });
 
 //Runs the dev tasks listed above
-gulp.task('dev:build', function(cb) {
+gulp.task('dev:build', function (cb) {
     runSequence(['html', 'styles', 'copyJquery', 'jshint', 'images'], cb);
 });
 
@@ -132,7 +125,7 @@ gulp.task('prod:clean', function () {
 });
 
 //Minify and add html to dist
-gulp.task('prod:html', function() {
+gulp.task('prod:html', function () {
     return gulp.src(tmpPath + '*.html')
         .pipe(gulp.dest(distPath));
 });
@@ -141,28 +134,28 @@ gulp.task('prod:html', function() {
 gulp.task('prod:useMin', function () {
     return gulp.src(tmpPath + '*.html')
         .pipe(usemin({
-            js: [uglify()],
+            js: [sourcemaps.init(), uglify(), sourcemaps.write()],
             css: [minifyCSS(), 'concat']
         }))
         .pipe(gulp.dest(distPath));
 });
 
 //Process images
-gulp.task('prod:images', function() {
+gulp.task('prod:images', function () {
     return gulp.src(tmpImagesSource)
         .pipe(gulp.dest(distPath + 'images'));
 });
 
 //Process fonts
-gulp.task('prod:fonts', function() {
+gulp.task('prod:fonts', function () {
     return gulp.src(fontsSource)
         .pipe(gulp.dest(distPath + 'fonts'));
 });
 
 
 //create a prod task that runs devbuild then runs the other prod tasks above
-gulp.task('prod', function(cb) {
-    runSequence('prod:clean', 'dev:build', ['vendor', 'prod:html', 'prod:images'], cb);
+gulp.task('prod', function (cb) {
+    runSequence('prod:clean', 'dev:build', ['prod:useMin', 'prod:html', 'prod:images', 'prod:fonts'], cb);
 });
 
 //Fire up a prod server to make sure nothing is broken in the prod code

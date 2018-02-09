@@ -35,7 +35,7 @@ jQuery(function ($){
       }, 0.1, '-=3')
       .to($bg, 5, {
         scale: 1.1,
-        ease: Power3.easeInOut
+        ease: Power4.easeInOut
       }, '-=2');
   }
 
@@ -64,11 +64,6 @@ jQuery(function ($){
         autoAlpha: 1,
         y: 0
       }, 0.4)
-      .to($navigationMenu, 1.1, {
-        x: -60,
-        autoAlpha: 1,
-        ease: Power3.easeInOut
-      }, '-=1.1')
       .to(timeline, 1, {
         autoAlpha: 1,
         y: -60
@@ -190,9 +185,12 @@ jQuery(function ($){
     var url = location.pathname;
 
     if (namespace === 'homepage') {
-      console.log('second', homeIn, homeIn());
+      $("nav ul").removeClass('navigation__menu-w');
       homeIn();
     } else if (namespace === 'aboutpage') {
+      $('.menu-link').removeClass('active');
+      $('.menu-link:contains("About")').addClass('active');
+      $("nav ul").addClass('navigation__menu-w');
       aboutIn();
     } else if (namespace === 'history') {
       aboutIn();

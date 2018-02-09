@@ -1,0 +1,111 @@
+.wrap {
+  width: 100vw;
+  position: fixed;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+}
+.wrap__plain-text {
+  font-family: "texgyreherosbold";
+  font-size: 1em;
+}
+.wrap__cons-text {
+  font-family: "Consolas";
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 1.5;
+  margin-top: 10px;
+}
+.wrap__gallery {
+  background-image: url(/images/2/gallery_1.jpg);
+  height: 100%;
+  opacity: 0;
+  background-repeat: no-repeat;
+}
+.wrap__content-right {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 87px;
+  padding-top: 5vh;
+}
+.wrap__name {
+  font-family: "texgyreherosbold";
+  padding-top: 10px;
+  line-height: 1;
+  font-size: 15px;
+}
+.wrap__name span {
+  font-family: "Consolas";
+  font-weight: bold;
+  font-size: 12px;
+  display: block;
+  line-height: 1;
+}
+.wrap__hr {
+  width: 100%;
+  background-color: #dcdcdc;
+  height: 7px;
+  box-shadow: none;
+  margin-top: 4vh;
+}
+.wrap__h1-title {
+  transform: rotate(90deg);
+  font-family: "texgyreherosbold";
+  color: black;
+  font-size: 2em;
+  text-align: left;
+  position: relative;
+  top: 7px;
+}
+.wrap__digits {
+  color: #e3e3e3;
+  font-size: 8em;
+  font-family: "texgyreheroscnbold";
+  text-align: right;
+  line-height: 1;
+  margin-top: -17px;
+  margin-bottom: 7vh;
+}
+.wrap__first-column {
+  width: 18%;
+}
+.wrap__third-column {
+  position: relative;
+}
+.wrap__second-column, .wrap__third-column {
+  padding: 0 10px;
+}
+
+.timeline {
+  position: fixed;
+  display: flex;
+  bottom: 0px;
+  height: 100px;
+  background-color: #282828;
+  z-index: 9;
+  margin-left: 7vw;
+  max-width: 60vw;
+  color: white;
+  opacity: 0;
+  margin-bottom: -60px;
+  padding: 30px 30px 30px 60px;
+  align-items: center;
+  justify-content: space-between;
+}
+.timeline__year {
+  font-family: "Consolas";
+  font-size: 11px;
+  line-height: 0.9;
+}
+.timeline__year span {
+  display: block;
+  font-size: 4em;
+  font-family: "texgyreheroscnbold";
+}
+.timeline__text {
+  padding-left: 40px;
+  font-family: "Consolas";
+  font-size: 13px;
+  line-height: 1.1;
+}

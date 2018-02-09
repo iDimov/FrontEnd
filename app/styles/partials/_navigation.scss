@@ -62,17 +62,19 @@
     padding: 5px 10px;
     display: block;
     text-decoration: none;
-    color: rgba(124, 124, 124, 0.875);
+    color: rgba(235, 235, 235, 0.875);
     transition: all .5s ease;
     position: relative;
      transform: scale(1);
      margin-top: -50px;
+    transition: all 1s ease;
   }
-  .active > .menu-item {
-    color: white;
-    transition: all .5s ease;
+  .active > .menu-link{
+    color: rgb(69, 34, 110);
+    transition: all 2s ease;
   }
-  .navigation__menu_w .menu-item {
+  .navigation__menu-w .menu-link {
     color: black !important;
+    transition: all 1s ease;
   }
 }
