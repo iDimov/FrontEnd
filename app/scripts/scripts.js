@@ -7,18 +7,19 @@ jQuery(function ($){
     var $into_h1 = $('.intro__h1-title');
     var $into_info = $('.intro__intro-info');
     var $navigationMenu = $('.menu-link');
+    var $line = $('.cb-btn_view-line');
+    var $button_text = $('.cb-btn_view-text span');
   
     var tlHome = new TimelineMax();
     
     tlHome
-      .to($bg, 1, {
+      .to($bg, 2, {
         alpha: 1 
       })
       .to($white_line, 1.3, {
         height: '100vh',
-        ease: Power4.easeOut,
-        delay: .1
-      })
+        ease: Power4.easeOut
+      }, '-=1.5')
       .to($into_h1, 1.3, {
         y: -161,
         ease: Power4.easeInOut,
@@ -33,14 +34,23 @@ jQuery(function ($){
         autoAlpha: 1,
         ease: Circ.easeInOut
       }, 0.1, '-=3')
-      .to($bg, 5, {
-        scale: 1.1,
-        ease: Power4.easeInOut
-      }, '-=2');
+      .to($line, .7, {
+        width: '100%',
+        ease: Power4.easeInOut,
+      }, '-=.5')
+      .to($button_text, 1.2, {
+        y: -35,
+        ease: Power4.easeInOut,
+      }, '-=.8')
+      .to($bg, 4, {
+        scale: 1.05,
+        ease: Power1.easeInOut
+      }, '-=2.5');
   }
 
 
   var aboutIn = function () {
+    console.log('about');
     var about_columns = $('.wrap__content-right > div');
     var about_gallery = $('.wrap__gallery');
     var timeline = $('.timeline');
@@ -71,8 +81,8 @@ jQuery(function ($){
   };
 
 
-  homeIn();
   aboutIn();
+  homeIn();
 
 
   var FadeTransition = Barba.BaseTransition.extend({
@@ -98,7 +108,7 @@ jQuery(function ($){
 
       var tl = new TimelineMax({
         onComplete: function () {
-          $oldContainer.hide('slow');
+          $oldContainer.hide();
           _this.done();
           $(document).trigger('pageLoaded', [$newContainer]);
         }
@@ -188,10 +198,10 @@ jQuery(function ($){
       $("nav ul").removeClass('navigation__menu-w');
       homeIn();
     } else if (namespace === 'aboutpage') {
+      aboutIn();
       $('.menu-link').removeClass('active');
       $('.menu-link:contains("About")').addClass('active');
       $("nav ul").addClass('navigation__menu-w');
-      aboutIn();
     } else if (namespace === 'history') {
       aboutIn();
     }
@@ -205,5 +215,46 @@ jQuery(function ($){
   $(document).trigger('pageLoaded', [$('.barba-container')]);
 
   Barba.Pjax.start();
+
+  $(function () {
+
+    $(".cb-btn_view.-magnet").each(function () {
+      var t = $(this),
+        o = t.find(".cb-btn_view-text"),
+        a = t.find(".cb-btn_view-line"),
+        n = void 0,
+        r = void 0,
+        s = void 0,
+        i = void 0,
+        l = function (e, t, n, r, s, i) {
+          TweenLite.to(o, s, {
+            top: t,
+            left: e,
+            overwrite: !0
+          }), TweenLite.to(a, i, {
+            top: r,
+            left: n,
+            overwrite: !0
+          })
+        };
+      t.on("mouseenter", function (t) {
+        n = o.offset().top - $(window).scrollTop(), r = o.offset().left - $(window).scrollLeft(), s = o.outerWidth(), i = o.outerHeight()
+      }), t.on("mousemove", function (t) {
+        var a = t.clientY,
+          c = t.clientX;
+        n = o.offset().top - $(window).scrollTop(), r = o.offset().left - $(window).scrollLeft(), s = o.outerWidth(), i = o.outerHeight();
+        var f = a - n - i / 2,
+          d = c - r - s / 2,
+          u = f - 3,
+          h = d;
+        l(d, f, h, u, .4, .7)
+      }), t.on("mouseleave", function (e) {
+        l(0, 0, 0, 0, .7, .5)
+      })
+    })
+
+
+
+  });
 
 });

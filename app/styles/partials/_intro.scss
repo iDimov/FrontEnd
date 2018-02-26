@@ -27,6 +27,7 @@
   justify-content: center;
   align-items: center;
   background: transparent;
+  flex-direction: column;
 }
 .intro__intro-text {
   overflow: hidden;
@@ -43,6 +44,7 @@
   position: relative;
   margin: 0;
   z-index: 1;
+  text-align: center;
 }
 .intro__intro-info {
   position: absolute;
