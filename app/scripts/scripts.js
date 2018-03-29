@@ -83,6 +83,7 @@ jQuery(function ($){
 
   aboutIn();
   homeIn();
+  buttonAnime();
 
 
   var FadeTransition = Barba.BaseTransition.extend({
@@ -101,7 +102,7 @@ jQuery(function ($){
       var about_columns = $('.wrap__content-right > div');
       var about_gallery = $('.wrap__gallery');
       var timeline = $('.timeline');
-      // var $navigationMenu = $('.navigation');
+      // var $navigationMenu = $'.navigation');
       var namespaceOld = $oldContainer.data('namespace');
 
       $(document).trigger('pageLoading', [$newContainer]);
@@ -114,7 +115,8 @@ jQuery(function ($){
         }
       });
       if (namespaceOld === 'homepage') {
-
+        buttonAnime();
+        console.log(buttonAnime);
         tl.to($white_line, 1, {
           height: '0vh',
         })
@@ -127,6 +129,14 @@ jQuery(function ($){
           //   autoAlpha: 0,
           //   ease: Power3.easeInOut
           // }, '-=.5')
+          .to($line, .7, {
+            width: '100%',
+            ease: Power4.easeInOut,
+          }, '-=.5')
+          .to($button_text, 1.2, {
+            y: -35,
+            ease: Power4.easeInOut,
+          }, '-=.8')
           .to($into_info, 1, {
             x: 40,
             autoAlpha: 0
@@ -191,11 +201,14 @@ jQuery(function ($){
 
   $(document).on('pageLoaded', function (e, $page) {
     console.log('here', $page);
+    buttonAnime();
     var namespace = $page.data('namespace');
     var url = location.pathname;
 
     if (namespace === 'homepage') {
+      $('.menu-link').removeClass('active');
       $("nav ul").removeClass('navigation__menu-w');
+      $('.menu-link:contains("Main")').addClass('active');
       homeIn();
     } else if (namespace === 'aboutpage') {
       aboutIn();
@@ -216,8 +229,8 @@ jQuery(function ($){
 
   Barba.Pjax.start();
 
-  $(function () {
 
+function buttonAnime() {
     $(".cb-btn_view.-magnet").each(function () {
       var t = $(this),
         o = t.find(".cb-btn_view-text"),
@@ -252,9 +265,10 @@ jQuery(function ($){
         l(0, 0, 0, 0, .7, .5)
       })
     })
+  }
 
 
 
-  });
+
 
 });

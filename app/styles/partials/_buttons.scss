@@ -53,7 +53,7 @@
     display: block;
     position: relative;
     overflow: hidden;
-    color: #000;
+    color: white;
     line-height: 2;
 }
 
@@ -87,7 +87,7 @@
     width:0%;
     transform-origin:left center;
     transition:bottom .2s;
-    background:currentColor
+    background:$secondary_color;
 }
 .cb-btn_view:focus,.cb-btn_view:hover{
     text-decoration:none
