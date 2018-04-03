@@ -6,11 +6,11 @@
   justify-content: space-between;
 }
 .wrap__plain-text {
-  font-family: "texgyreherosbold";
+  font-family: "Roboto";
   font-size: 1em;
 }
 .wrap__cons-text {
-  font-family: "Consolas";
+  font-family: "Roboto Mono";
   font-weight: bold;
   font-size: 12px;
   line-height: 1.5;
@@ -30,13 +30,13 @@
   padding-top: 5vh;
 }
 .wrap__name {
-  font-family: "texgyreherosbold";
+  font-family: "Roboto";
   padding-top: 10px;
   line-height: 1;
   font-size: 15px;
 }
 .wrap__name span {
-  font-family: "Consolas";
+  font-family: "Roboto Mono";
   font-weight: bold;
   font-size: 12px;
   display: block;
@@ -51,7 +51,7 @@
 }
 .wrap__h1-title {
   transform: rotate(90deg);
-  font-family: "texgyreherosbold";
+  font-family: "Roboto";
   color: black;
   font-size: 2em;
   text-align: left;
@@ -61,10 +61,11 @@
 .wrap__digits {
   color: #e3e3e3;
   font-size: 8em;
-  font-family: "texgyreheroscnbold";
+  font-family: "Roboto";
   text-align: right;
   line-height: 1;
   margin-top: -17px;
+  font-weight: 900;
   margin-bottom: 7vh;
 }
 .wrap__first-column {
@@ -94,18 +95,19 @@
   justify-content: space-between;
 }
 .timeline__year {
-  font-family: "Consolas";
+  font-family: "Roboto Mono";
   font-size: 11px;
   line-height: 0.9;
 }
 .timeline__year span {
   display: block;
   font-size: 4em;
-  font-family: "texgyreheroscnbold";
+  font-family: "Roboto";
+  font-weight: 900;
 }
 .timeline__text {
   padding-left: 40px;
-  font-family: "Consolas";
+  font-family: "Roboto Mono";
   font-size: 13px;
   line-height: 1.1;
 }
