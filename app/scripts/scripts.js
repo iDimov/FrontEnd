@@ -34,13 +34,13 @@ jQuery(function ($){
     var tlHome = new TimelineMax();
     
     tlHome
-      .to($bg, 2, {
+      .to($bg, .7, {
         alpha: 1 
       })
-      .to($white_line, 1.3, {
+      .to($white_line, 1.4, {
         height: '100vh',
         ease: Power4.easeOut
-      }, '-=1.5')
+      }, '-=.3')
       .to($into_h1, 1.3, {
         y: -161,
         ease: Power4.easeInOut,

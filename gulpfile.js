@@ -66,10 +66,15 @@ gulp.task('copyJquery', function () {
 //Lint scripts
 gulp.task('jshint', function () {
     return gulp.src([scriptsSource, '!app/scripts/vendor/**/*.js'])
-        .pipe(jshint())
-        .pipe(jshint.reporter(stylish))
+        // .pipe(jshint())
+        // .pipe(jshint.reporter(stylish))
         .pipe(gulp.dest(tmpPath + 'scripts'))
         .pipe(browserSync.stream({ match: '**/*.js' }));
+});
+
+gulp.task('prod:js', function () {
+    return gulp.src(scriptsSource)
+        .pipe(gulp.dest(distPath + 'scripts'));
 });
 
 //Copy images
@@ -134,7 +139,7 @@ gulp.task('prod:html', function () {
 gulp.task('prod:useMin', function () {
     return gulp.src(tmpPath + '*.html')
         .pipe(usemin({
-            js: [sourcemaps.init(), uglify(), sourcemaps.write()],
+            // js: [uglify()],
             css: [minifyCSS(), 'concat']
         }))
         .pipe(gulp.dest(distPath));
@@ -155,7 +160,7 @@ gulp.task('prod:fonts', function () {
 
 //create a prod task that runs devbuild then runs the other prod tasks above
 gulp.task('prod', function (cb) {
-    runSequence('prod:clean', 'dev:build', ['prod:useMin', 'prod:html', 'prod:images', 'prod:fonts'], cb);
+    runSequence('prod:clean', 'dev:build', ['prod:js', 'prod:useMin', 'prod:html', 'prod:images', 'prod:fonts'], cb);
 });
 
 //Fire up a prod server to make sure nothing is broken in the prod code
