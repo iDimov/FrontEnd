@@ -30,6 +30,7 @@
    z-index: 1;
    left: 23%;
    opacity: 0.5
+   transition: all 1s ease;
 }
 .intro {
   width: 100vw;
@@ -44,6 +45,8 @@
   overflow: hidden;
   line-height: 0.9;
   height: 12em;
+  position: relative;
+  width: 100vw;
 }
 .intro__h1-title {
   text-align: center;
@@ -51,12 +54,21 @@
   color: white;
   font-family: $roboto;
   line-height: 1;
-  bottom: -180px;
-  position: relative;
+  bottom: -270px;
+  position: absolute;
+  left: 50%;  
   margin: 0;
   z-index: 1;
   text-align: center;
   font-weight: 900;
+  text-transform: uppercase;
+  
+  span {
+    display: block;
+    transform-origin: 50% 50%;
+    transform: translate(-50%, -50%) perspective(500px) rotateY(2deg) rotateX(3deg);
+    transform-style: preserve-3d;
+  }
 }
 .intro__intro-info {
   position: absolute;
@@ -65,4 +77,10 @@
   top: 13%;
   padding-left: 57px;
   opacity: 0;
+  span {
+    display: block;
+    transform-origin: 50% 50%;
+    transform: translate(-50%, -50%) perspective(500px) rotateY(2deg) rotateX(3deg);
+    transform-style: preserve-3d;
+  }
 }

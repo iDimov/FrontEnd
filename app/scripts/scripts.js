@@ -1,4 +1,25 @@
 // "use strict";
+
+function mouseMove(e) {
+  var friction = 1 / 35;
+  var followX = (window.innerWidth / 2 - e.clientX);
+  var followY = (window.innerHeight / 2 - e.clientY);
+
+  var x = 0,
+      y = 0;
+  x +=( (-followX - x) * friction);
+  y += (followY - y) * friction;
+
+   var offset = {
+    transform: `translate(-50%, -50%) perspective(1000px) rotateY(${x}deg) rotateX(${y}deg)`
+               }
+   var offset2 = {
+    transform: `translate(-50%, -50%) perspective(5000px) rotateY(${y}deg) rotateX(${x}deg)`
+               }
+  document.getElementById('move-1').style.transform = offset.transform;
+  document.getElementById('move-2').style.transform = offset2.transform;
+  // console.log(offset.transform);
+}
 jQuery(function ($){ 
   
   var homeIn = function() {
@@ -49,6 +70,8 @@ jQuery(function ($){
   }
 
 
+
+
   var aboutIn = function () {
     console.log('about');
     var about_columns = $('.wrap__content-right > div');
@@ -91,6 +114,7 @@ jQuery(function ($){
   homeIn();
   buttonAnime();
   cursorMove();
+  // mouseMove();
 
 
   var FadeTransition = Barba.BaseTransition.extend({
